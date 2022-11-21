@@ -59,7 +59,15 @@
           babashka
         ]);
       packages = rec {
-        default = shell;
+        build = stablePkgs.writeTextFile rec {
+          name = "garden-env";
+          executable = true;
+          destination = "/bin/${name}";
+          text = ''
+            #!${stablePkgs.runtimeShell}
+            PATH="${stablePkgs.lib.makeBinPath runner-deps}" bb ${./build.clj}
+          '';
+        };
         shell = stablePkgs.writeTextFile rec {
           name = "garden-env";
           executable = true;
@@ -69,10 +77,18 @@
             PATH="${stablePkgs.lib.makeBinPath runner-deps}" $SHELL
           '';
         };
+        default = shell;
       };
-      apps.default = {
-        type = "app";
-        program = "${packages.shell}/bin/garden-env";
+      apps = rec {
+        build = {
+          type = "app";
+          program = "${packages.build}/bin/garden-env";
+        };
+        shell = {
+          type = "app";
+          program = "${packages.shell}/bin/garden-env";
+        };
+        default = shell;
       };
     });
 }
