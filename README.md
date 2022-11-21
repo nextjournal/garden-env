@@ -6,4 +6,7 @@ Locally reproduce the environment used on [clerk.garden](https://clerk.garden):
 
 2. Configure nix `echo "extra-experimental-features = nix-command flakes" | sudo tee /etc/nix/nix.conf`
 
-3. To start a shell with the dependencies available on clerk.garden, run `nix run github:nextjournal/garden-env`
+3. Build your notebook locally with the same dependencies as available on clerk.garden: `nix run github:nextjournal/garden-env#build`
+
+
+To enter an interactive shell with the same dependencies as available on clerk.garden, run `nix run github:nextjournal/garden-env`
