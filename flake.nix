@@ -1,5 +1,5 @@
 {
-  inputs.stable.url = "github:nixos/nixpkgs/release-22.05";
+  inputs.stable.url = "github:nixos/nixpkgs/release-22.11";
   inputs.latest.url = "github:nixos/nixpkgs/nixos-unstable";
   inputs.flake-utils.url = "github:numtide/flake-utils";
   outputs = {
