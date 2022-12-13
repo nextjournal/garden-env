@@ -44,6 +44,12 @@
           gnutar
           gzip
           which
+        ] ++ [
+	  bash
+          cairo
+          pango
+          libjpeg_turbo
+          giflib
         ]
         ++ (with latestPkgs; let
           tailwindcssWithPlugins = nodePackages.tailwindcss.overrideAttrs (oldAttrs: {
